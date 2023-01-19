@@ -57,7 +57,7 @@
         </div>
 
         <div
-          id="imageneees"
+          id="img"
           class="row row-cols-1 row-cols-md-3 row-cols-lg-4"
         ></div>
       </div>
@@ -73,7 +73,7 @@
     feather.replace();
     const api_key = "OZOFp4aS6hK4dqYCBj4sMiK4mO9Chlpw";
     const inputSearch = document.getElementById("search");
-    const ola = document.getElementById("imageneees");
+    const gif = document.getElementById("img");
     inputSearch.onkeyup = async (event) => {
       event.preventDefault();
       console.log(event);
@@ -94,22 +94,14 @@
         document.getElementById("imageneees").appendChild(gif)
 
       }
-    //   let content = ``;
-
-    //   //es como un for
-    //   data.data.map((gif, index) => {
-    //     content += `
-    //       <img src="${gif.images.original.url}" class="mb-3 ms-1" alt="${gif.title}"
-    //       `;
-    //   });
-    //   ola.innerHTML = content;
+   
      };
   </script>
 
 
   <script>
     feather.replace();
-    const api_key2 = "OZOFp4aS6hK4dqYCBj4sMiK4mO9Chlpw";
+    const ApiKey = "OZOFp4aS6hK4dqYCBj4sMiK4mO9Chlpw";
     const randoom = document.getElementById("random");
     let imagen = document.getElementById("imageneees");
 
@@ -117,7 +109,7 @@
       imagen.innerHTML=``;
       console.log(event);
       const response = await fetch(
-        `https://api.giphy.com/v1/gifs/random?api_key=${api_key2}`
+        `https://api.giphy.com/v1/gifs/random?api_key=${ApiKey}`
       );
       const data = await response.json();
 
