@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./js/funciones.js" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="navbar-expand navbar-light navbar-center">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"><i data-feather="search"></i> &nbsp Buscar GIF</a>
+            </li>
+            <li class="nav-item">
+            
+              <a class="nav-link" href="#" id="random"> <i data-feather="box"></i> &nbsp Random Gif</a>  
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluit mt-5">
+      <div class="row">
+        <div class="col">
+          <div>
+            <label for="buscar">Buscar gif</label>
+            <input
+              type="text"
+              name="search"
+              id="search"
+              class="form-control"
+              onkeyup="inputSearch()"
+            />
+          </div>
+        </div>
+
+        <div
+          id="imageneees"
+          class="row row-cols-1 row-cols-md-3 row-cols-lg-4"
+        ></div>
+      </div>
+    </div>
+  </body>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    feather.replace();
+    const api_key = "OZOFp4aS6hK4dqYCBj4sMiK4mO9Chlpw";
+    const inputSearch = document.getElementById("search");
+    const ola = document.getElementById("imageneees");
+    inputSearch.onkeyup = async (event) => {
+      event.preventDefault();
+      console.log(event);
+      if (event.keyCode !== 13) return;
+
+      const response = await fetch(
+        `http://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${inputSearch.value}`
+      );
+      const data = await response.json();
+
+      console.log(data);
+      ola.innerHTML=``
+
+      for (let i = 0; i < data.data.length; i++) {
+        const gif = document.createElement('img');
+        gif.src= data.data[i].images["original"].url;
+        gif.className="mb-3";
+        document.getElementById("imageneees").appendChild(gif)
+
+      }
+    //   let content = ``;
+
+    //   //es como un for
+    //   data.data.map((gif, index) => {
+    //     content += `
+    //       <img src="${gif.images.original.url}" class="mb-3 ms-1" alt="${gif.title}"
+    //       `;
+    //   });
+    //   ola.innerHTML = content;
+     };
+  </script>
+
+
+  <script>
+    feather.replace();
+    const api_key2 = "OZOFp4aS6hK4dqYCBj4sMiK4mO9Chlpw";
+    const randoom = document.getElementById("random");
+    let imagen = document.getElementById("imageneees");
+
+    randoom.onclick = async (event) => {
+      imagen.innerHTML=``;
+      console.log(event);
+      const response = await fetch(
+        `http://api.giphy.com/v1/gifs/random?api_key=${api_key2}`
+      );
+      const data = await response.json();
+
+      console.log(data);
+      const gif= document.createElement("img");
+      gif.src = data.data.images.original.url;
+      gif.className = "mb-3";
+      imagen.appendChild(gif);
+
+     };
+  </script>
+</html>
