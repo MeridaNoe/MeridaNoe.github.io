@@ -80,7 +80,7 @@
       if (event.keyCode !== 13) return;
 
       const response = await fetch(
-        `http://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${inputSearch.value}`
+        `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${inputSearch.value}`
       );
       const data = await response.json();
 
@@ -117,7 +117,7 @@
       imagen.innerHTML=``;
       console.log(event);
       const response = await fetch(
-        `http://api.giphy.com/v1/gifs/random?api_key=${api_key2}`
+        `https://api.giphy.com/v1/gifs/random?api_key=${api_key2}`
       );
       const data = await response.json();
 
