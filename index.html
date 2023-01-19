@@ -85,7 +85,7 @@
       const data = await response.json();
 
       console.log(data);
-      ola.innerHTML=``
+      gif.innerHTML=``
 
       for (let i = 0; i < data.data.length; i++) {
         const gif = document.createElement('img');
@@ -102,8 +102,8 @@
   <script>
     feather.replace();
     const ApiKey = "OZOFp4aS6hK4dqYCBj4sMiK4mO9Chlpw";
-    const randoom = document.getElementById("random");
-    let imagen = document.getElementById("imageneees");
+    const random = document.getElementById("random");
+    let imagen = document.getElementById("img");
 
     randoom.onclick = async (event) => {
       imagen.innerHTML=``;
